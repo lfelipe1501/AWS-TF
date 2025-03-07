@@ -38,8 +38,8 @@ This repository contains Terraform configurations to deploy and manage Ubuntu se
 1. Clone this repository:
 
    ```bash
-   git clone <repository-url>
-   cd terraform-aws-ubuntu
+   git clone https://github.com/lfelipe1501/AWS-TF.git
+   cd AWS-TF
    ```
 
 2. Create your configuration file from the template:
