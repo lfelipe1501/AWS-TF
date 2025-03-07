@@ -1,0 +1,79 @@
+# AWS Region
+aws_region = "us-east-1"
+
+# AWS CLI Profile (optional)
+# aws_profile = "default"
+
+# Number of Ubuntu instances to deploy
+ubuntu_instances_count = 1 # Change this value to deploy more instances
+
+# Enable IPv6
+enable_ipv6 = false # Change this value to true for enable ipv6
+
+# SSH Configuration
+ssh_public_key_path = "~/.ssh/id_rsa.pub"
+ssh_port = 2255
+key_pair_name = "ubuntu-key"
+
+# Enable or disable SSH password authentication
+ssh_password_authentication = false
+
+# Timezone configuration
+timezone = "UTC"
+
+# User configuration
+username = "ubuntu"
+password = "StrongPassword123!"  # In production, use a more secure method
+
+# Custom hostname (leave empty to use instance name)
+hostname = "ubuntu-server"
+
+# EC2 instances configuration
+instances = [
+  {
+    name        = "ubuntu-server"
+    instance_type = "t2.micro"
+    ami         = "ami-04b4f1a9cf54c11d0" # Ubuntu 24.04 LTS in us-east-1
+    availability_zone = "us-east-1a"
+    root_volume_size = 25
+    root_volume_type = "gp3"
+    labels      = { role = "server" }
+  }
+]
+
+# Project information
+project_name = "my-ubuntu-project"
+environment  = "production"  # Others: staging, development
+
+# Network configuration
+vpc_cidr = "172.10.0.0/23"
+subnet_cidrs = {
+  public  = ["172.10.1.0/28"]
+  private = ["172.10.1.16/28"]
+}
+
+# Elastic IP configuration
+create_elastic_ip = true
+
+# Instance monitoring
+enable_detailed_monitoring = false
+
+# Allowed IPs for SSH (recommended for security)
+allowed_ssh_ips = ["0.0.0.0/0"]  # Replace with your IP for better security
+
+# Security group configuration
+enable_http = true
+enable_https = true
+
+# Additional custom security group rules
+custom_security_group_rules = [
+  {
+    enabled    = false
+    type       = "ingress"
+    protocol   = "tcp"
+    from_port  = 8080
+    to_port    = 8080
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Alternative port for web applications"
+  }
+] 
